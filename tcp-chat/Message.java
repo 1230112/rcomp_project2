@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * The type Message.
  */
@@ -13,28 +15,22 @@ public class Message {
     /**
      * The first length.
      */
-    private int DATA_LEN_L;
-    /**
-     * The second length.
-     */
-    private int DATA_LEN_M;
-    /**
-     * The DATA1.
-     */
-    private byte[] DATA;
-
-
+    private List<DataAndLenght> dataList;
 
     public Message(final int versionp, final int CODEp,
-                   final int DATA_LEN_Lp, final int DATA_LEN_Mp,
-                   final byte[] DATAp) {
+                   final List<DataAndLenght> dataListp) {
         this.VERSION = versionp;
         this.CODE = CODEp;
-        this.DATA_LEN_L = DATA_LEN_Lp;
-        this.DATA_LEN_M = DATA_LEN_Mp;
-        this.DATA = DATAp;
-
+        this.dataList = dataListp;
     }
+
+
+
+    public List<DataAndLenght> dataAndLenghts() {
+        return dataList;
+    }
+
+
 
     /**
      * Version int.
@@ -59,26 +55,7 @@ public class Message {
      *
      * @return the int
      */
-    public int data_len_l() {
-        return DATA_LEN_L;
-    }
 
-    /**
-     * D length 2 int.
-     *
-     * @return the int
-     */
-    public int data_len_m() {
-        return DATA_LEN_M;
-    }
 
-    /**
-     * Data byte [ ].
-     *
-     * @return the byte [ ]
-     */
-    public byte[] data() {
-        return DATA;
-    }
 
 }

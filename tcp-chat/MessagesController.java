@@ -1,4 +1,5 @@
 import java.net.Socket;
+import java.util.Collections;
 
 public class MessagesController {
 
@@ -24,7 +25,7 @@ public class MessagesController {
          * @return the int
          */
         public int sendCommunicationTest(){
-            mf.sendMessage(VERSION, MessageCodes.COMMTEST, "");
+            mf.sendMessage(VERSION, MessageCodes.COMMTEST, Collections.singletonList(""));
 
             Message result = mf.readMessage();
 
@@ -36,7 +37,7 @@ public class MessagesController {
          * @return the int
          */
         public int sendEndOfSession(){
-            mf.sendMessage(VERSION, MessageCodes.DISCONN, "");
+            mf.sendMessage(VERSION, MessageCodes.DISCONN, Collections.singletonList(""));
 
             Message result = mf.readMessage();
 
@@ -49,7 +50,7 @@ public class MessagesController {
          * @return the message
          */
         public Message authenticate(String data){
-            mf.sendMessage(VERSION, MessageCodes.AUTH, data);
+            mf.sendMessage(VERSION, MessageCodes.AUTH, Collections.singletonList(data));
 
             return mf.readMessage();
         }
