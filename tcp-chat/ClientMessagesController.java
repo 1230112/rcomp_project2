@@ -1,7 +1,9 @@
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
-public class MessagesController {
+public class ClientMessagesController {
 
         private Socket sock;
         private MessageFormat mf;
@@ -15,7 +17,7 @@ public class MessagesController {
          * Instantiates a new Shared board app controller.
          * @param sock the sock
          */
-        public MessagesController(Socket sock) {
+        public ClientMessagesController(Socket sock) {
             this.sock = sock;
             this.mf = new MessageFormat(sock);
         }
@@ -49,8 +51,9 @@ public class MessagesController {
          * @param data the data
          * @return the message
          */
-        public Message authenticate(String data){
-            mf.sendMessage(VERSION, MessageCodes.AUTH, Collections.singletonList(data));
+        public Message authenticate(String data1, String data2){
+            List<String> dataList = Arrays.asList(data1, data2);
+            mf.sendMessage(VERSION, MessageCodes.AUTH, dataList);
 
             return mf.readMessage();
         }
