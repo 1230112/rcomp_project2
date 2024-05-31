@@ -1,9 +1,5 @@
 package org.shared.board.app;
 
-import org.shared.board.app.SharedBoardAppController;
-import org.shared.board.app.Message;
-import org.shared.board.app.MessageCodes;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

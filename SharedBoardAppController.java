@@ -1,9 +1,5 @@
 package org.shared.board.app;
 
-import org.shared.board.app.Message;
-import org.shared.board.app.MessageCodes;
-import org.shared.board.app.MessageFormat;
-
 import java.net.Socket;
 
 /**
