@@ -12,7 +12,7 @@ import java.net.Socket;
  */
 public class MainMenuUI {
     private Socket sock;
-    private SharedBoardAppController theController;
+    private ClientController theController;
 
     /**
      * Instantiates a new Main menu ui.
@@ -20,7 +20,7 @@ public class MainMenuUI {
      */
     public MainMenuUI(final Socket sockp) {
         this.sock = sockp;
-        this.theController = new SharedBoardAppController(sockp);
+        this.theController = new ClientController(sockp);
     }
 
     /**

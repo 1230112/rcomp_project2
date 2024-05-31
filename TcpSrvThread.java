@@ -5,7 +5,6 @@ package org.shared.board.app;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.NoSuchElementException;
 
 /**
  * The type Tcp srv thread.
@@ -19,7 +18,7 @@ public class TcpSrvThread implements Runnable {
     /**
      * The SharedBoardServerController.
      */
-    private SharedBoardServerController theController;
+    private ServerController theController;
 
     /**
      * The SharedBoardServerController.
@@ -38,8 +37,8 @@ public class TcpSrvThread implements Runnable {
      */
     public TcpSrvThread(final Socket cliSer) {
         sock = cliSer;
-        theController = new SharedBoardServerController(
-                new SharedBoardServerService());
+        theController = new ServerController(
+                new ServerService());
 
     }
 

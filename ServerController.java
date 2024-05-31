@@ -7,11 +7,11 @@ import java.nio.charset.StandardCharsets;
 /**
  * The type Shared board server controller.
  */
-public class SharedBoardServerController {
+public class ServerController {
     /**
      * SharedBoardServerService.
      */
-    private SharedBoardServerService sbSvc;
+    private ServerService sbSvc;
 
     /**
      * AuthorizationService.
@@ -24,7 +24,7 @@ public class SharedBoardServerController {
      * @param sbSvcp the sb svcp
 
      */
-    public SharedBoardServerController(final SharedBoardServerService sbSvcp) {
+    public ServerController(final ServerService sbSvcp) {
         this.sbSvc = sbSvcp;
     }
 

@@ -1,15 +1,10 @@
 package org.shared.board.app;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
 /**
  * The type Shared board server service.
  */
-public class SharedBoardServerService {
+public class ServerService {
     /**
      * Get AuthenticationService.
      */
@@ -28,7 +23,7 @@ public class SharedBoardServerService {
     /**
      * Instantiates a new SharedBoardServerService.
      */
-    public SharedBoardServerService() {
+    public ServerService() {
         this.synchronizer = Synchronizer.getInstance();
     }
 

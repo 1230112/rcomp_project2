@@ -11,13 +11,13 @@ import java.nio.charset.StandardCharsets;
 public class LoginUI {
     private BufferedReader in = new BufferedReader(
             new InputStreamReader(System.in));
-    private SharedBoardAppController theController;
+    private ClientController theController;
 
     /**
      * Instantiates a new Login ui.
      * @param theControllerp the the controllerp
      */
-    public LoginUI(final SharedBoardAppController theControllerp) {
+    public LoginUI(final ClientController theControllerp) {
         this.theController = theControllerp;
     }
 

@@ -5,7 +5,7 @@ import java.net.Socket;
 /**
  * The type Shared board app controller.
  */
-public class SharedBoardAppController {
+public class ClientController {
     private Socket sock;
     private MessageFormat mf;
 
@@ -18,7 +18,7 @@ public class SharedBoardAppController {
      * Instantiates a new Shared board app controller.
      * @param sock the sock
      */
-    public SharedBoardAppController(Socket sock) {
+    public ClientController(Socket sock) {
         this.sock = sock;
         this.mf = new MessageFormat(sock);
     }
