@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The type Login ui.
@@ -35,19 +33,21 @@ public class LoginUI {
             String password = in.readLine();
             System.out.println();
 
-            String data1 = email + "\0";
-            String data2 = password + "\0";
-            List<String> dataList = new ArrayList<>();
-            Message result = theController.authenticate(dataList);
+            String data = email + "\0" + password + "\0";
+
+            Message result = theController.authenticate(data);
 
             if (result.code() == MessageCodes.ACK) {
                 System.out.println("User authenticated successfully!\n");
             } else {
                 String errorData;
 
-
+                if (result.data().length > 0) {
+                    errorData = new String(result.data(),
+                            StandardCharsets.US_ASCII);
+                } else {
                     errorData = "Invalid credentials!";
-
+                }
 
                 System.out.println(errorData + "\n");
             }
