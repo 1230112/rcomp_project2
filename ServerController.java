@@ -3,6 +3,7 @@ package org.shared.board.app;
 
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * The type Shared board server controller.
@@ -35,9 +36,19 @@ public class ServerController {
      * @return the int
      */
     public int authenticate(final Message data) {
-        String result = new String(data.data(), StandardCharsets.US_ASCII);
+        List<DataAndLength> dataList = data.dataAndLengths();
+        DataAndLength dataLength1;
+        DataAndLength dataLength2;
+        dataLength1 = dataList.get(0);
+        dataLength2 = dataList.get(1);
+        byte [] dataBytes1;
+        byte [] dataBytes2;
+        dataBytes1 = dataLength1.getData();
+        dataBytes2 = dataLength2.getData();
 
-        return sbSvc.authenticateUser(result);
+        String result = new String(dataBytes1, StandardCharsets.US_ASCII);
+        String result2 = new String(dataBytes2, StandardCharsets.US_ASCII);
+        return sbSvc.authenticateUser(result, result2);
     }
 
 

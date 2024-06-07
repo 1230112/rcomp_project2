@@ -1,13 +1,13 @@
 package org.shared.board.app;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * The type Message format.
- */
+import static java.lang.Thread.sleep;
+
 public class MessageFormat {
     /**
      * The Sock.
@@ -43,12 +43,37 @@ public class MessageFormat {
         }
     }
 
+
+    public void sendMessage(final int version,
+                            final int code,
+                            final List<String> texts) {
+        try {
+            sOut.writeByte(version);
+            sOut.writeByte(code);
+            byte[] data;
+            int dataLength;
+
+            int data_len_l;
+            int data_len_m;
+            for (String text : texts) {
+                data = text.getBytes();
+                dataLength = data.length;
+
+                data_len_l = dataLength % BYTE;
+                data_len_m = dataLength / BYTE;
+
+                sOut.writeByte(data_len_l);
+                sOut.writeByte(data_len_m);
+                sOut.write(data, 0, dataLength);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     /**
-     * Send message.
+     * Read message message.
      *
-     * @param version the version
-     * @param code    the code
-     * @param text    the text
+     * @return the message
      */
     public void sendMessage(final int version,
                             final int code,
@@ -69,31 +94,36 @@ public class MessageFormat {
             throw new RuntimeException(e);
         }
     }
-
-    /**
-     * Read message message.
-     *
-     * @return the message
-     */
     public Message readMessage() {
         try {
             int version = sIn.readUnsignedByte();
             int code = sIn.readUnsignedByte();
-            int d_length_1 = sIn.readUnsignedByte();
-            int d_length_2 = sIn.readUnsignedByte();
+            int d_length_1;
+            int d_length_2;
 
             // calculate data length
-            int dataLength = d_length_1 + (d_length_2 * BYTE);
+            int dataLength;
 
-            byte[] data = new byte[dataLength];
-
-            if (dataLength > 0) {
-                sIn.readFully(data);
+            byte[] data;
+            List<DataAndLength> dataList = new ArrayList<>();
+            while (sIn.available() > 0) {
+                d_length_1 = sIn.readUnsignedByte();
+                d_length_2 = sIn.readUnsignedByte();
+                dataLength = d_length_1 + (d_length_2 * BYTE);
+                data = new byte[dataLength];
+                if (dataLength > 0) {
+                    sIn.readFully(data);
+                }
+                dataList.add(new DataAndLength(data, d_length_1, d_length_2));
+                sleep(100);
             }
 
-            return new Message(version, code, d_length_1, d_length_2, data);
-        } catch (IOException e) {
+
+            return new Message(version, code, dataList);
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
-        }
+
     }
+
 }
+  }

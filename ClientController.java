@@ -5,7 +5,12 @@ import java.net.Socket;
 /**
  * The type Shared board app controller.
  */
+import java.net.Socket;
+import java.util.Collections;
+import java.util.List;
+
 public class ClientController {
+
     private Socket sock;
     private MessageFormat mf;
 
@@ -28,7 +33,7 @@ public class ClientController {
      * @return the int
      */
     public int sendCommunicationTest(){
-        mf.sendMessage(VERSION, MessageCodes.COMMTEST, "");
+        mf.sendMessage(VERSION, MessageCodes.COMMTEST, Collections.singletonList(""));
 
         Message result = mf.readMessage();
 
@@ -40,28 +45,17 @@ public class ClientController {
      * @return the int
      */
     public int sendEndOfSession(){
-        mf.sendMessage(VERSION, MessageCodes.DISCONN, "");
+        mf.sendMessage(VERSION, MessageCodes.DISCONN, Collections.singletonList(""));
 
         Message result = mf.readMessage();
 
         return result.code();
     }
 
-    /**
-     * Authenticate.
-     * @param data the data
-     * @return the message
-     */
-    public Message authenticate(String data){
-        mf.sendMessage(VERSION, MessageCodes.AUTH, data);
+
+    public Message authenticate(List<String> datas){
+        mf.sendMessage(VERSION, MessageCodes.AUTH, datas);
 
         return mf.readMessage();
     }
-
-    /**
-     * Create board.
-     * @param data the data
-     * @return the message
-     */
-
 }

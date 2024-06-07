@@ -34,11 +34,10 @@ public class ServerService {
      * @return the int
      * @throws IllegalArgumentException the illegal argument exception
      */
-    public int authenticateUser(final String userData)
+    public int authenticateUser(final String userData, final String password1)
             throws IllegalArgumentException {
-        String email = userData.substring(0, userData.indexOf("\0"));
-        String password = userData.substring(
-                userData.indexOf("\0") + 1, userData.length() - 1);
+        String email = userData;
+        String password = password1;
 
 
 
