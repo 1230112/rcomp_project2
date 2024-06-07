@@ -26,14 +26,14 @@ public class LoginUI {
      */
     protected void doShow() {
         try {
-            System.out.print("Email: ");
-            String email = in.readLine();
+            System.out.print("Username: ");
+            String username = in.readLine();
 
             System.out.print("Password: ");
             String password = in.readLine();
             System.out.println();
 
-            String data = email + "\0" + password + "\0";
+            String data = username + "\0" + password + "\0";
 
             Message result = theController.authenticate(data);
 
