@@ -60,7 +60,7 @@ public class ServerService {
         String name = userData.substring(
                 userData.indexOf("\0") + 1, userData.length() - 1);
         System.out.println(content+name);
-      /* try{
+       try{
             FileOutputStream fos = new FileOutputStream(name);
             fos.write(contentBytes);
             fos.close();
@@ -69,7 +69,7 @@ public class ServerService {
             throw new RuntimeException(e);
 
         }
-        */
+
 
 
         return MessageCodes.ACK;
