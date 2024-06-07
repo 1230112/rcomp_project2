@@ -68,8 +68,26 @@ public class MessageFormat {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }/*
+    public void sendFile(final int version,
+                            final int code,
+                            final byte[] data) {
 
+        int dataLength = data.length;
+
+        int d_length_1 = dataLength % BYTE;
+        int d_length_2 = dataLength / BYTE;
+
+        try {
+            sOut.writeByte(version);
+            sOut.writeByte(code);
+            sOut.writeByte(d_length_1);
+            sOut.writeByte(d_length_2);
+            sOut.write(data, 0, dataLength);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
     /**
      * Read message message.
      *

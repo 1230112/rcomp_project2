@@ -39,6 +39,11 @@ public class ServerController {
 
         return sbSvc.authenticateUser(result);
     }
+    public int upload(final Message data) {
+        String result = new String(data.data(), StandardCharsets.US_ASCII);
+
+        return sbSvc.upload(result);
+    }
 
 
 }

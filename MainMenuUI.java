@@ -51,7 +51,7 @@ public class MainMenuUI {
         do {
             System.out.println("1 - Communication test");
             System.out.println("2 - Authenticate");
-
+            System.out.println("3 - UploadFile");
             System.out.println("0 - End of session request");
             System.out.println("\nOption - ");
             try {
@@ -75,6 +75,10 @@ public class MainMenuUI {
                 case 2:
                     LoginUI loginUI = new LoginUI(theController);
                     loginUI.doShow();
+                    break;
+                case 3:
+                    FilesManagementUI filesManagementUI = new FilesManagementUI(theController);
+                    filesManagementUI.doShow();
                     break;
 
                 case 0:

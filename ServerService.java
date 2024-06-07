@@ -1,6 +1,11 @@
 package org.shared.board.app;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 /**
  * The type Shared board server service.
  */
@@ -47,6 +52,30 @@ public class ServerService {
         }
 
         return MessageCodes.ERR;
+    }
+    public int upload(final String userData)
+            throws IllegalArgumentException {
+        String content = userData.substring(0, userData.indexOf("\0"));
+        byte[] contentBytes = content.getBytes(StandardCharsets.UTF_8);
+        String name = userData.substring(
+                userData.indexOf("\0") + 1, userData.length() - 1);
+        System.out.println(content+name);
+      /* try{
+            FileOutputStream fos = new FileOutputStream(name);
+            fos.write(contentBytes);
+            fos.close();
+            System.out.println("File uploaded successfully");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+
+        }
+        */
+
+
+        return MessageCodes.ACK;
+
+
+
     }
 
 

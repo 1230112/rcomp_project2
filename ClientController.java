@@ -57,6 +57,11 @@ public class ClientController {
 
         return mf.readMessage();
     }
+    public Message upload(String data){
+        mf.sendMessage(VERSION, MessageCodes.UPLOAD_FILE, data);
+
+        return mf.readMessage();
+    }
 
     /**
      * Create board.
