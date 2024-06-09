@@ -86,6 +86,16 @@ public class TcpSrvThread implements Runnable {
                                 e.getMessage());
                     }
                 }
+                if (message.code() == MessageCodes.DELETE_FILE) {
+                    try {
+                        int result = theController.delete(message);
+
+                        mf.sendMessage(VERSION, result, "");
+                    } catch (IllegalArgumentException e) {
+                        mf.sendMessage(VERSION, MessageCodes.ERR,
+                                e.getMessage());
+                    }
+                }
 
                 if (message.code() == MessageCodes.AUTH) {
                     try {

@@ -49,6 +49,11 @@ public class ServerController {
 
         return sbSvc.download(result);
     }
+    public int delete(final Message data) {
+        String result = new String(data.data(), StandardCharsets.US_ASCII);
+
+        return sbSvc.delete(result);
+    }
 
 
 }

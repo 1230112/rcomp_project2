@@ -67,6 +67,11 @@ public class ClientController {
 
         return mf.readMessage();
     }
+    public Message delete(String data){
+        mf.sendMessage(VERSION, MessageCodes.DELETE_FILE, data);
+
+        return mf.readMessage();
+    }
     /**
      * Create board.
      * @param data the data

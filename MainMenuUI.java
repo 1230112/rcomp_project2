@@ -53,6 +53,7 @@ public class MainMenuUI {
             System.out.println("2 - Authenticate");
             System.out.println("3 - UploadFile");
             System.out.println("4 - DownloadFile");
+            System.out.println("5 - DeleteFile");
             System.out.println("0 - End of session request");
             System.out.println("\nOption - ");
             try {
@@ -84,6 +85,11 @@ public class MainMenuUI {
                 case 4:
                     DownloadFilesUI filesManagementUI2 = new DownloadFilesUI(theController);
                     filesManagementUI2.doShow();
+                    break;
+
+                    case 5:
+                    DeleteFilesUI filesManagementUI3 = new DeleteFilesUI(theController);
+                    filesManagementUI3.doShow();
                     break;
                 case 0:
                     codeResult = theController.sendEndOfSession();

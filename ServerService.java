@@ -114,7 +114,36 @@ public class ServerService {
 
         return MessageCodes.ACK;
     }
+    public int delete(final String userData) throws IllegalArgumentException {
+        int separatorIndex = userData.indexOf("\0");
+        if (separatorIndex == -1) {
+            System.out.println("Invalid user data format!");
+            return MessageCodes.ERR;
+        }
 
+        String name = userData.substring(0, separatorIndex);
+        System.out.println("Deleting file: " + name);
+
+        String directory = "./uploadFiles/";
+        // Ensure the directory ends with a file separator
+        if (!directory.endsWith(File.separator)) {
+            directory += File.separator;
+        }
+
+        File fileToDelete = new File(directory + name);
+        if (fileToDelete.exists() && fileToDelete.canWrite()) {
+            if (fileToDelete.delete()) {
+                System.out.println("File deleted successfully from " + directory);
+                return MessageCodes.ACK;
+            } else {
+                System.out.println("Failed to delete file from " + directory);
+                return MessageCodes.ERR;
+            }
+        } else {
+            System.out.println("File does not exist or you do not have write permission!");
+            return MessageCodes.ERR;
+        }
+    }
 
 
     private static String getStringByIndex(int index, String input) {
