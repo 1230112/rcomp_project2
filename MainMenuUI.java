@@ -52,6 +52,7 @@ public class MainMenuUI {
             System.out.println("1 - Communication test");
             System.out.println("2 - Authenticate");
             System.out.println("3 - UploadFile");
+            System.out.println("4 - DownloadFile");
             System.out.println("0 - End of session request");
             System.out.println("\nOption - ");
             try {
@@ -80,7 +81,10 @@ public class MainMenuUI {
                     FilesManagementUI filesManagementUI = new FilesManagementUI(theController);
                     filesManagementUI.doShow();
                     break;
-
+                case 4:
+                    DownloadFilesUI filesManagementUI2 = new DownloadFilesUI(theController);
+                    filesManagementUI2.doShow();
+                    break;
                 case 0:
                     codeResult = theController.sendEndOfSession();
 

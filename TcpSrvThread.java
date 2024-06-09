@@ -76,6 +76,16 @@ public class TcpSrvThread implements Runnable {
                                 e.getMessage());
                     }
                 }
+                if (message.code() == MessageCodes.DOWNLOAD_FILE) {
+                    try {
+                        int result = theController.download(message);
+
+                        mf.sendMessage(VERSION, result, "");
+                    } catch (IllegalArgumentException e) {
+                        mf.sendMessage(VERSION, MessageCodes.ERR,
+                                e.getMessage());
+                    }
+                }
 
                 if (message.code() == MessageCodes.AUTH) {
                     try {

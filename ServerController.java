@@ -44,6 +44,11 @@ public class ServerController {
 
         return sbSvc.upload(result);
     }
+    public int download(final Message data) {
+        String result = new String(data.data(), StandardCharsets.US_ASCII);
+
+        return sbSvc.download(result);
+    }
 
 
 }

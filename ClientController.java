@@ -62,7 +62,11 @@ public class ClientController {
 
         return mf.readMessage();
     }
+    public Message download(String data){
+        mf.sendMessage(VERSION, MessageCodes.DOWNLOAD_FILE, data);
 
+        return mf.readMessage();
+    }
     /**
      * Create board.
      * @param data the data
